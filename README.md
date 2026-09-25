@@ -17,7 +17,7 @@ Module layout, data model, and routes are in [docs/architecture.md](docs/archite
 
 ## Current state
 
-Nest CLI scaffold. Empty `AppModule`, server on `PORT` or `3000`. No business feature is implemented.
+Prisma schema, the SQLite migration, and startup env validation are in place. Auth, conversations, and messages are not. See [docs/status.md](docs/status.md).
 
 ## How to run
 
@@ -27,7 +27,7 @@ cp .env.example .env
 npm run start:dev
 ```
 
-Prisma, the database, and the AI variables arrive with the features that need them. Until then, `.env` only has to exist if some code starts reading it.
+`PORT` and `DATABASE_URL` are required to boot. The other variables in `.env.example` are for later features.
 
 ```bash
 npm test

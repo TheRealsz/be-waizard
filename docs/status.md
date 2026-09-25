@@ -6,8 +6,8 @@ Suggested order. A feature's tests land with the feature, not in a block at the 
 
 ## Foundation
 
-- [ ] Prisma, SQLite, and `PrismaModule`
-- [ ] Environment variables loaded at startup
+- [x] Prisma, SQLite, and `PrismaModule`
+- [x] Environment variables loaded at startup and reviewed
 
 ## Auth
 
@@ -43,4 +43,4 @@ Suggested order. A feature's tests land with the feature, not in a block at the 
 
 ## Right now
 
-Nothing beyond the Nest CLI scaffold (`src/main.ts`, `src/app.module.ts`).
+Prisma, SQLite, and startup env validation are in place. The schema is applied through `20260925182447`, on top of `20260925160911_init`. Next up is auth.

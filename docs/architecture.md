@@ -38,50 +38,9 @@ The controller receives the request and sends the response. The service holds th
 
 ## Data model
 
-`schema.prisma` does not exist yet. When it is created, this is the shape:
-
-```prisma
-model User {
-  id            String         @id @default(cuid())
-  email         String         @unique
-  passwordHash  String
-  name          String?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  conversations Conversation[]
-}
-
-model Conversation {
-  id        String    @id @default(cuid())
-  userId    String
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  title     String    @default("New conversation")
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  messages  Message[]
-
-  @@index([userId])
-}
-
-model Message {
-  id             String       @id @default(cuid())
-  conversationId String
-  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
-  role           Role
-  content        String
-  createdAt      DateTime     @default(now())
-
-  @@index([conversationId])
-}
-
-enum Role {
-  USER
-  ASSISTANT
-}
-```
+Recorded in `prisma/schema.prisma`. Ids are `Int` with `autoincrement()`. Column names in SQLite are snake_case via `@map`; Prisma fields stay camelCase. The client is generated to `src/generated/prisma`. The CLI config file is `prisma7.config.ts`.
 
 SQLite via `DATABASE_URL`. Passwords are bcrypt hashes in `passwordHash`. Deleting the account deletes conversations and messages through the cascade.
-
 ## Auth
 
 - `POST /auth/signup` and `POST /auth/signin` are public.
@@ -149,3 +108,5 @@ The wizard prompt is a constant under `src/ai/`, not a user-editable field. The 
 ## Environment
 
 See [.env.example](../.env.example). Do not commit `.env`.
+
+Startup validation lives in `src/config/env.ts` and runs through `ConfigModule.forRoot({ validate })`. The error lists variable names and rule messages, not values.

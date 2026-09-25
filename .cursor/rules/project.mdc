@@ -1,0 +1,14 @@
+---
+description: Study backend context and per-feature review mode
+alwaysApply: true
+---
+
+# be-waizard
+
+Study NestJS API (chat with a wizard). The Expo app does not live in this repository.
+
+Before changing code or reviewing a feature, read `CLAUDE.md`, `docs/architecture.md`, and `docs/status.md`. The architecture doc is the contract; the status doc says what already exists.
+
+The user implements each feature alone and asks for a review afterward. On review: name the problem and the smallest fix, in the user's language, without rewriting their solution and without implementing the next feature. Edit code only when they ask for implementation.
+
+Out of scope: a second NPC, refresh tokens, XP, multiplayer, monetization, offline-first, mobile screens.
